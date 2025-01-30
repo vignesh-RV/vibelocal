@@ -1,0 +1,83 @@
+.signup-container{
+  margin: 100px 20% 50px 20%;
+  background-color: #ffff;
+  padding: 20px 40px;
+}
+.form-control{
+  display: flex;
+  align-items: center;
+}
+.form-control label {
+  min-width: 200px;
+  text-align: right;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+
+.form-control input,
+.form-control select{
+  width: 200px;
+    height: 30px;
+    padding: 3px 10px;
+    margin: 5px;
+    border: solid 1px #aaa;
+    border-radius: 5px;
+}
+
+p.text-red-500 {
+  color: red;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: lowercase;
+  margin-left: 5px;
+}
+
+.signup-container h2{
+  border-bottom: solid;
+}
+.signup-container h4{
+  text-decoration: underline;
+  color: #0277bd;
+  margin: 10px 0;
+}
+
+.form-control label::after {
+  content: '*';
+  margin-left: 4px;
+  color: red;
+}
+
+.profile-preview{
+  width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 40px;
+    position: relative;
+    border: dotted 2px;
+    padding: 4px;
+    object-fit: cover;
+}
+
+.signup-submit{
+  background-color: #01579b;
+    min-width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    border: solid 2px;
+    cursor: pointer;
+}
+
+.already-info{
+  font-size: 14px;
+  margin-top: 10px;
+}
+.already-info span{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #01579b;
+  cursor: pointer;
+}

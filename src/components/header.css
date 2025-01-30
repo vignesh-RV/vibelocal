@@ -1,0 +1,158 @@
+.cart-popup{
+  width: 300px;
+  position: fixed;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  right: 20px;
+  top: 60px;
+  box-shadow: 1px 3px 8px 0px #1f234b;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.cart-popup h2{
+  border-bottom: solid;
+  font-size: 1.2rem;
+}
+.cart-item-container{
+  list-style: none;
+  max-height: 300px;
+  overflow: auto;
+}
+.cart-popup li{
+  background-color: #f4f4f4;
+  margin: 4px;
+  padding: 4px 10px;
+  font-size: 14px;
+}
+
+.cart-popup button{
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: none;
+  float: right;
+  cursor: pointer;
+}
+
+.item-remove-icon{
+  font-size: 12px;
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+span.item-name {
+  color: #070792;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+#total-cart-row{
+  text-align: right;
+  padding-right: 60px;
+  position: sticky;
+  bottom: 0;
+}
+.total-cart-amount{
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  color: #1f234b;
+}
+
+.cart-popup li:hover:not(#total-cart-row){
+  background-color: #dec0c0;
+}
+
+.proceed-btn{
+  font-size: 12px;
+    color: #00b244;
+    text-align: right;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cart-popup.main-page{
+  position: unset;
+  height: calc(100vh - 140px);
+  width: calc(100vw - 2* 14%);
+  margin: 100px 14% 0 14%;
+}
+
+.cart-popup.main-page .proceed-btn {
+  font-size: 12px;
+  background-color: #00b244;
+  text-align: right;
+  margin: 30px 0;
+  font-weight: bold;
+  cursor: pointer;
+  border: solid 2px;
+  padding: 5px 10px;
+  width: 150px;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  border-radius: 4px;
+  float: right;
+}
+
+.cart-popup.main-page table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart-popup.main-page table th,td{
+  border: solid 1px;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+.cart-popup.main-page table thead tr{
+  font-weight: bold;
+  background-color: #01485d;
+    color: #fff;
+    font-size: 14px;
+}
+.final-total-price{
+  padding-right: 50px;
+  text-align: right;
+}
+.delet-icon{
+  text-align: center;
+}
+.delet-icon button{float: unset;}
+.product-name-col{width: 55%;}
+.text-right{text-align: right!important;}
+.order-confirmation{
+  border: solid 4px #01485d;
+  padding: 30px 40px;
+  margin: 30px;
+}
+
+.order-confirmation h2,
+.order-confirmation h3,
+.order-confirmation h4,
+.order-confirmation h5 {
+  margin-left: 22%;
+}
+
+.confirm-tick{
+  width: 120px;
+    height: 120px;
+    font-size: 4rem;
+    border: solid 8px green;
+    border-radius: 500%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 20%;
+}
+
+.nav__item.nav__btn a{
+  color: #fff !important;
+}

@@ -1,0 +1,362 @@
+/* ShopPage.css */
+
+/* General Layout */
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px 5px 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 48px; /* Adjusted for better placement */
+  background-color: white;
+}
+
+.search-icon {
+  margin-right: 6px;
+  color: #888;
+}
+
+.search-bar {
+  border: none !important;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  margin: 0 !important;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Responsive layout for smaller screens */
+}
+
+.filter-btn {
+  padding: 10px 15px;
+  background-color: #0277bd; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #0288d1; /* Lighter blue */
+}
+
+/* Shop Listings */
+.shop-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.shop-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.shop-details {
+  margin-top: 10px;
+}
+
+.shop-details h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.shop-details p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.discount {
+  background-color: #28a745; /* Green */
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.product-discount{
+  transform: translate(120px, -60px);
+  display: flex;
+  width: 80px;
+  font-size: 12px;
+}
+
+.no-results {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Right Icons Container */
+.right-icons {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.icon-btn {
+  background-color: #0277bd;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.icon-btn:hover {
+  background-color: #0288d1;
+}
+
+.icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Settings Modal */
+.settings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.settings-modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Modal Titles and Form Elements */
+h2, h3 {
+  color: #0277bd;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.settings-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.settings-buttons button {
+  padding: 10px 15px;
+  background-color: #0277bd;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settings-buttons button:hover {
+  background-color: #0288d1;
+}
+
+.settings-buttons button[type="submit"] {
+  background-color: #28a745;
+}
+
+.settings-buttons button[type="button"] {
+  background-color: #dc3545;
+}
+
+/* Settings Options */
+.settings-button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: #e9ecef;
+}
+
+/* Close Button for Modal */
+.settings-close {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settings-close:hover {
+  background-color: #c82333;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode .shop-card {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode .header,
+.dark-mode .filter-btn,
+.dark-mode .settings-button {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode .settings-modal-content {
+  background-color: #2b2b2b;
+}
+
+.dark-mode .settings-close {
+  background-color: #c82333;
+}
+
+.dark-mode .shop-image {
+  filter: brightness(0.7);
+}
+
+.cart-control{
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+.cart-control input{
+  width: 50px;
+  margin: 0 10px;
+  padding-left: 5px;
+}
+.cart-control button{
+  margin-left: 10px;
+}
+.cart-control button:disabled{
+  cursor: not-allowed;
+    background-color: #e5e2e2;
+}
+.cart-control span{
+  cursor: pointer;
+  width: 15px;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+}
+.cart-control span:active{
+  color: #0288d1;
+  background-color: #eee;
+}
+.add2cart-btn{
+  font-size: 10px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+
+.reduce-qty, .add-qty{
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .reduce-qty{
+  background-color: red;
+}
+.add-qty{
+  background-color: green;
+} */

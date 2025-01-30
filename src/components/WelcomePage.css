@@ -1,0 +1,625 @@
+/* General Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  background-color: #e3f2fd; /* Light blue background */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333; /* Dark text for good contrast */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.l-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0.5rem 1rem; /* Reduced padding */
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav__logo {
+  font-size: 1.5rem; /* Smaller logo font */
+  font-weight: bold;
+  color: #0277bd; /* Blue for the logo */
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Reduced gap */
+}
+
+.nav__list {
+  display: flex;
+  gap: 1rem; /* Reduced gap between menu items */
+  list-style: none;
+}
+
+.nav__item {
+  display: inline-block;
+}
+
+.nav__link {
+  text-decoration: none;
+  font-size: 0.9rem; /* Smaller font size for links */
+  color: #0277bd; /* Blue links */
+  transition: color 0.3s ease;
+}
+
+.nav__link:hover,
+.nav__link.active {
+  color: #01579b; /* Darker blue on hover */
+  font-weight: bold;
+}
+
+/* Buttons Section */
+.nav__btns {
+  display: flex;
+  gap: 0.8rem; /* Reduced gap */
+}
+
+.nav__btn {
+  padding: 0.3rem 1rem; /* Reduced button padding */
+  background-color: #0288d1; /* Light blue button */
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem; /* Smaller font size for buttons */
+}
+
+.nav__btn:hover {
+  background-color: #0277bd; /* Darker blue on hover */
+}
+
+/* Modal Styles */
+.signup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Ensure modal is on top of everything */
+}
+
+.signup-modal-content {
+  background-color: white;
+  padding: 1.5rem; /* Reduced padding */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 250px; /* Slightly narrower modal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-modal h2 {
+  margin-bottom: 1rem; /* Reduced margin */
+  font-size: 1.3rem; /* Smaller font size */
+  color: #0277bd; /* Match with header links */
+}
+
+.modal-btn {
+  background-color: #0288d1; /* Light blue */
+  color: white;
+  padding: 0.5rem 1rem; /* Reduced padding */
+  border-radius: 25px;
+  font-size: 0.9rem; /* Smaller font size */
+  margin: 0.5rem 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-btn:hover {
+  background-color: #0277bd; /* Darker blue on hover */
+}
+
+.modal-close-btn {
+  background-color: #f44336; /* Red for close button */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem; /* Smaller font size */
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Extra space between Seller and Buyer buttons */
+.modal-btn + .modal-btn {
+  margin-top: 1rem;
+}
+
+
+/* Home Section */
+.home {
+  background: #e3f2fd; /* Light blue background */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  padding: 0; /* Remove padding for full screen use */
+  min-height: 100vh; /* Ensure the section takes the full viewport height */
+  position: relative;
+  overflow: hidden;
+}
+
+.home__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%; /* Ensure it stretches fully */
+  height: 100%; /* Ensure full height */
+  gap: 2rem;
+}
+
+.home__img {
+  flex: 0 0 70%; /* Image occupies 70% of the width */
+  height: 100%; /* Ensure image takes up full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__data {
+  flex: 0 0 40%; /* Text content occupies 40% of the width */
+  height: 100%; /* Ensure text content takes up full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem; /* Padding for spacing around content */
+}
+
+/* Image Styling */
+.home__img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Ensure image covers the full space without stretching */
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.home__img img:hover {
+  transform: scale(1.08);
+}
+
+/* Text Content */
+.home__title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #0277bd;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.home__description {
+  color: #01579b;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.home__button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: #0288d1;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home__button:hover {
+  background-color: #0277bd;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Media Section */
+.home__social {
+  margin-top: 2rem;
+}
+
+.home__social-title {
+  font-size: 1.2rem;
+  color: #01579b;
+  margin-bottom: 1rem;
+}
+
+.home__social-links {
+  display: flex;
+  gap: 1rem; /* Add space between social icons */
+}
+
+.home__social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home__social-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home__container {
+    flex-direction: column; /* Stack content and image vertically */
+    text-align: center;
+  }
+
+  .home__img {
+    flex: 0 0 80%; /* Image takes more space on smaller screens */
+  }
+
+  .home__data {
+    flex: 0 0 80%; /* Text content takes 80% of the screen */
+    margin-top: 2rem;
+  }
+
+  .home__img img {
+    max-width: 300px; /* Adjust image size */
+    margin: 0 auto;
+  }
+
+  .home__title {
+    font-size: 2.5rem;
+  }
+
+  .home__description {
+    font-size: 1.2rem;
+  }
+
+  .home__button {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+  }
+
+  .home__social-links {
+    justify-content: center;
+  }
+
+  .home__social-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home__title {
+    font-size: 2rem;
+  }
+
+  .home__description {
+    font-size: 1rem;
+  }
+
+  .home__img img {
+    max-width: 250px;
+  }
+}
+
+
+  /* About Page Styles */
+.about {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: #fff;
+}
+
+.about__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0277bd;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.about__intro {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.about__mission,
+.about__why-shop-local,
+.about__how-it-works,
+.about__promise,
+.about__cta {
+  margin-bottom: 2rem;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #01579b;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about__toggle-btn {
+  background-color: #0288d1;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 1rem 0;
+}
+
+.about__toggle-btn:hover {
+  background-color: #0277bd;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.about__benefits-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.about__benefits-list li {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.about__cta-btn {
+  padding: 1rem 2.5rem;
+  background-color: #0288d1;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.about__cta-btn:hover {
+  background-color: #0277bd;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .about__title {
+    font-size: 2rem;
+  }
+
+  .about__intro {
+    font-size: 1rem;
+  }
+
+  .about__mission p,
+  .about__how-it-works ol,
+  .about__promise p {
+    font-size: 1rem;
+  }
+
+  .about h2 {
+    font-size: 1.5rem;
+  }
+
+  .about__toggle-btn {
+    font-size: 1rem;
+  }
+
+  .about__cta-btn {
+    font-size: 1rem;
+  }
+
+  .about__benefits-list li {
+    font-size: 1rem;
+  }
+}
+
+/* Contact Page Styles */
+.contact {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: #fff;
+}
+
+.contact__title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #0277bd;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.contact__info {
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact__form {
+  background-color: #f0f4f8;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.contact__form h2 {
+  font-size: 2rem;
+  color: #01579b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.contact__form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact__form-group label {
+  font-size: 1rem;
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact__form-group input,
+.contact__form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.contact__form-group textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.contact__submit {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: #0288d1;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.contact__submit:hover {
+  background-color: #0277bd;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Location Section */
+.contact__location {
+  text-align: center;
+}
+
+.contact__location h2 {
+  font-size: 2rem;
+  color: #01579b;
+  margin-top: 2rem;
+}
+
+.contact__location address {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.contact__map {
+  margin-top: 2rem;
+}
+
+.contact__map iframe {
+  width: 100%;
+  height: 400px;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav__menu {
+    display: none;
+  }
+
+  .home__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .home__img {
+    margin-top: 2rem;
+  }
+
+  .about h1,
+  .about h2 {
+    text-align: center;
+  }
+
+  .about p {
+    text-align: center;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+
+  .contact__title {
+    font-size: 2.5rem;
+  }
+
+  .contact__info {
+    font-size: 1rem;
+  }
+
+  .contact__form-group input,
+  .contact__form-group textarea {
+    font-size: 0.9rem;
+  }
+}
