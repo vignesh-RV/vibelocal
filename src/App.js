@@ -19,6 +19,7 @@ import OrdersPage from './components/orders';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ManageProducts from './components/manage-products';
+import ManageProfile from './components/manager-profile';
 
 function App() {
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/shops" element={<ShopPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/manage-products" element={<ManageProducts />} />
+        <Route path="/manage-profile" element={<ManageProfile />} />
       </Routes>
     </div>
     </CartProvider>

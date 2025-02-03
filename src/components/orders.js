@@ -51,7 +51,7 @@ function OrdersPage() {
               {orders.length === 0 ? (
                 <p>No orders found..</p>
               ) : (
-                <div>
+                <div className='orders-page-table-container'>
                   <table>
                     <thead>
                       <tr>

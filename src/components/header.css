@@ -186,7 +186,7 @@ span.item-name {
 .tb_pimage{
   width: 10%;
 }
-.shop-image{
+.tb_pimage .shop-image{
   height: 40px !important;
 }
 .tb_pname{
@@ -277,4 +277,14 @@ span.item-name {
     border: dotted 2px;
     padding: 4px;
     object-fit: cover;
+}
+
+
+.orders-page-table-container {
+  max-height: 450px;
+    overflow: auto;
+}
+.orders-page-table-container thead {
+  position: sticky;
+  top: 0;
 }

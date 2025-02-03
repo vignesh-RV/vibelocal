@@ -133,13 +133,14 @@ function ManageProducts() {
           product_name: product.product_name,
           category: product.category,
           price: product.price,
-          available_quantity: parseInt(product.quantity),
+          available_quantity: parseInt(product.available_quantity),
           offer: product.offer,
           shop_id: shopId,
-          product_image: preview
+          product_image: preview,
+          product_id: product.product_id,
         }
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/products`, {
-          method: 'POST',
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/products${product.product_id ? '/'+product.product_id : ''}`, {
+          method: product.product_id ? 'PUT' : 'POST',
           headers: {
             'Content-Type': 'application/json',
           },

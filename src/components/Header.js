@@ -45,13 +45,16 @@ function Header() {
     if (user_data) {
       setUserData(JSON.parse(user_data));
       fetchCartItemsForUser();
-    }    
+    }
+
+    setIsCartOpen(false);
+    setIsProfileOpen(false);
 
     // Cleanup function to reset body overflow when component unmounts
     return () => {
       document.body.style.overflow = 'auto'; // Always reset to auto when modal closes or component unmounts
     };
-  }, []);
+  }, [location]);
 
   return (
     <>
@@ -92,7 +95,7 @@ function Header() {
             </button> */}
             <img onClick={() => toggleModal(setIsProfileOpen,!isProfileOpen)} src={userData.profile_image ? userData.profile_image : profilelogo} alt="Profile Preview" className="profile-preview w-32 h-32 mt-2 rounded-md profile-small" />
             <button className="icon-btn" onClick={() => toggleModal(setIsCartOpen, !isCartOpen)}> <FaShoppingCart className="icon" size={16} />{cartItems.length !==0 && (<span className='cart-count'>{cartItems.length}</span>)}</button>
-            <button className="icon-btn"> <FaCog className="icon"  size={16} /> </button>
+            {/* <button className="icon-btn"> <FaCog className="icon"  size={16} /> </button> */}
           </div>
           )}
         </nav>
