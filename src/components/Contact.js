@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const sendEnquiry = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData({ name: "", email: "", message: "" });
+    toast.info(`Thank  you  for contacting us!
+      Our team will get back to you soon.`);
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="contact">
       <h1 className="contact__title">Contact Us</h1>
@@ -11,20 +30,20 @@ function Contact() {
       {/* Contact Form Section */}
       <section className="contact__form">
         <h2>Get in Touch</h2>
-        <form>
+        <form onSubmit={sendEnquiry}>
           <div className="contact__form-group">
             <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            <input type="text" id="name" value={formData.name} onChange={handleChange} name="name" placeholder="Enter your name" required />
           </div>
           <div className="contact__form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            <input type="email" id="email" value={formData.email} onChange={handleChange} name="email" placeholder="Enter your email" required />
           </div>
           <div className="contact__form-group">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+            <textarea id="message" value={formData.message} onChange={handleChange} name="message" placeholder="Your message" required></textarea>
           </div>
-          <button type="submit" className="contact__submit">Send Message</button>
+          <button type='submit' className="contact__submit">Send Message</button>
         </form>
       </section>
 

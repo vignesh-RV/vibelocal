@@ -5,6 +5,8 @@ import "./signup.css"
 import profilelogo from "../assets/images/profile-image.png"
 import shoplogo from "../assets/images/shop-profile-image.png"
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 
 export default function Signup() {
   const {
@@ -14,11 +16,67 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
-  const userType = watch("userType");
+  const userType = watch("user_type");
   
   const onSubmit = (data) => {
     console.log("Form Data:", data);
+    data.profile_image = profileImagePreview;
+    data.shop_logo = shopLogoPreview;
+    createUser(data);
   };
+
+  const convertToBase64 = (file, imageref) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      imageref(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const createUser = async (userData) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("User created successfully!");
+        userData.owner_id = data.user_id;
+        createShop(userData);
+        setTimeout(()=> navigate("/signin"), 1500);
+      } else {
+        toast.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      toast.error(`Exception: ${error}`);
+    }
+  }
+
+  const createShop = async (userData) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/shops`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.dir(data);
+      } else {
+        toast.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      toast.error(`Exception: ${error}`);
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -28,7 +86,8 @@ export default function Signup() {
   const handleImageChange = (event, setPreview) => {
     const file = event.target.files[0];
     if (file) {
-      setPreview(URL.createObjectURL(file));
+      convertToBase64(file,setPreview);
+      // setPreview(URL.createObjectURL(file));
     }
   };
 
@@ -43,30 +102,30 @@ export default function Signup() {
       <h4>Personal Information</h4>
       <div className="form-control">
         <label>First Name</label>
-        <input {...register("firstName", { required: "First Name is required" })} />
-        {errors.firstName && <p className="text-red-500">{errors.firstName.message}</p>}
+        <input {...register("first_name", { required: "First Name is required" })} />
+        {errors.first_name && <p className="text-red-500">{errors.first_name.message}</p>}
       </div>
       
       <div  className="form-control">
         <label>Last Name</label>
-        <input {...register("lastName", { required: "Last Name is required" })} />
-        {errors.lastName && <p className="text-red-500">{errors.lastName.message}</p>}
+        <input {...register("last_name", { required: "Last Name is required" })} />
+        {errors.last_name && <p className="text-red-500">{errors.last_name.message}</p>}
       </div>
 
       <div  className="form-control">
         <label>Mobile Number</label>
-        <input {...register("mobileNumber", { required: "Mobile number is required" })} />
-        {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber.message}</p>}
+        <input {...register("mobile_number", { required: "Mobile number is required" })} />
+        {errors.mobile_number && <p className="text-red-500">{errors.mobile_number.message}</p>}
       </div>
       
       <div className="form-control">
         <label>User Type</label>
-        <select {...register("userType", { required: "User Type is required" })}>
+        <select {...register("user_type", { required: "User Type is required" })}>
           <option value="">select User Type</option>
           <option value="Seller">Seller</option>
-          <option value="Buyer">Buyer</option>
+          <option selected value="Buyer">Buyer</option>
         </select>
-        {errors.userType && <p className="text-red-500">{errors.userType.message}</p>}
+        {errors.user_type && <p className="text-red-500">{errors.user_type.message}</p>}
       </div>
       
       <div className="form-control">
@@ -86,10 +145,10 @@ export default function Signup() {
       
       <div className="form-control">
         <label>User Profile Image</label>
-        <input id="user-profile-selector" type="file" accept="image/*" {...register("profileImage", { required: "Profile Image is required" })} 
+        <input id="user-profile-selector" type="file" accept="image/*" {...register("profile_image", { required: "Profile Image is required" })} 
         onChange={(e) => handleImageChange(e, setProfileImagePreview)}/>
         <img onClick={()=>handleImageClick('#user-profile-selector')} src={profileImagePreview ? profileImagePreview : profilelogo} alt="Profile Preview" className="profile-preview w-32 h-32 mt-2 rounded-md" />
-        {errors.profileImage && <p className="text-red-500">{errors.profileImage.message}</p>}
+        {errors.profile_image && <p className="text-red-500">{errors.profile_image.message}</p>}
       </div>
       
       {userType === "Seller" && (
@@ -97,26 +156,26 @@ export default function Signup() {
           <h4>Shop Information</h4>
           <div className="form-control">
             <label>Shop Name</label>
-            <input {...register("shopName", { required: "Shop Name is required" })} />
-            {errors.shopName && <p className="text-red-500">{errors.shopName.message}</p>}
+            <input {...register("shop_name", { required: "Shop Name is required" })} />
+            {errors.shop_name && <p className="text-red-500">{errors.shop_name.message}</p>}
           </div>
           
           <div className="form-control">
             <label>Shop Category</label>
-            <input {...register("shopCategory", { required: "Shop Category is required" })} />
-            {errors.shopCategory && <p className="text-red-500">{errors.shopCategory.message}</p>}
+            <input {...register("category", { required: "Shop Category is required" })} />
+            {errors.category && <p className="text-red-500">{errors.category.message}</p>}
           </div>
           
           <div className="form-control">
             <label>Shop Offer</label>
-            <input {...register("shopOffer", { required: "Shop Offer is required" })} />
-            {errors.shopOffer && <p className="text-red-500">{errors.shopOffer.message}</p>}
+            <input {...register("offer", { required: "Shop Offer is required" })} />
+            {errors.offer && <p className="text-red-500">{errors.offer.message}</p>}
           </div>
           
           <div className="form-control">
             <label>Shop Location</label>
-            <input {...register("shopLocation", { required: "Shop Location is required" })} />
-            {errors.shopLocation && <p className="text-red-500">{errors.shopLocation.message}</p>}
+            <input {...register("location", { required: "Shop Location is required" })} />
+            {errors.location && <p className="text-red-500">{errors.location.message}</p>}
           </div>
           
           <div className="form-control">

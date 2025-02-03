@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -14,13 +14,29 @@ import ProfilePage from './components/ProfilePage';
 import SellerProfile from './components/SellerProfile';
 import Signup from './components/signup';
 import SignIn from './components/signin';
+import OrdersPage from './components/orders';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ManageProducts from './components/manage-products';
 
 function App() {
+  useEffect(() => {
+    document.title = "Vibe Local";
+  }, []);
+
   return (
     <CartProvider>
     <div className="App">
       <Header /> {/* Navigation Header */}
-
+      <ToastContainer 
+      position="bottom-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      closeOnClick
+      pauseOnHover
+      draggable
+      />
       {/* Define routes */}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,8 +48,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:shop_id" element={<ProductsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/shops" element={<ShopPage />} /> {/* Add route for ShopPage */}
+        <Route path="/shops" element={<ShopPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/manage-products" element={<ManageProducts />} />
       </Routes>
     </div>
     </CartProvider>

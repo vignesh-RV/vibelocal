@@ -2,108 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './ShopPage.css';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
-const shops = [
-  {
-    name: "Veg Shop A",
-    seller: "Seller A",
-    location: "Location A",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "10% Off",
-    category: "Veg",
-  },
-  {
-    name: "Veg Shop B",
-    seller: "Seller B",
-    location: "Location B",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "15% Off",
-    category: "Veg",
-  },
-  {
-    name: "Veg Shop C",
-    seller: "Seller C",
-    location: "Location C",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "20% Off",
-    category: "Veg",
-  },
-  {
-    name: "Meat Shop A",
-    seller: "Seller D",
-    location: "Location D",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "10% Off",
-    category: "Meat",
-  },
-  {
-    name: "Meat Shop B",
-    seller: "Seller E",
-    location: "Location E",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "25% Off",
-    category: "Meat",
-  },
-  {
-    name: "Meat Shop C",
-    seller: "Seller F",
-    location: "Location F",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "30% Off",
-    category: "Meat",
-  },
-  {
-    name: "Egg Shop A",
-    seller: "Seller G",
-    location: "Location G",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "5% Off",
-    category: "Egg",
-  },
-  {
-    name: "Egg Shop B",
-    seller: "Seller H",
-    location: "Location H",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "12% Off",
-    category: "Egg",
-  },
-  {
-    name: "Egg Shop C",
-    seller: "Seller I",
-    location: "Location I",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "10% Off",
-    category: "Egg",
-  },
-  {
-    name: "Fruit Shop A",
-    seller: "Seller J",
-    location: "Location J",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "20% Off",
-    category: "Fruit",
-  },
-  {
-    name: "Fruit Shop B",
-    seller: "Seller K",
-    location: "Location K",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "18% Off",
-    category: "Fruit",
-  },
-  {
-    name: "Fruit Shop C",
-    seller: "Seller L",
-    location: "Location L",
-    image: require("../assets/images/shopping.jpg"),
-    discount: "22% Off",
-    category: "Fruit",
-  },
-];
+// const shops = [
+//   {
+//     name: "Veg Shop A",
+//     seller: "Seller A",
+//     location: "Location A",
+//     image: require("../assets/images/shopping.jpg"),
+//     discount: "10% Off",
+//     category: "Veg",
+//   }
 
 const ShopPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [shops, setShops] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   // const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   // const [activeSetting, setActiveSetting] = useState(null);
@@ -117,16 +30,38 @@ const ShopPage = () => {
     } else {
       document.body.classList.remove('dark-mode');
     }
+
+    fetchAllShops();
   }, [isDarkMode]);
 
   // Filter shops based on search term and category
   const filteredShops = shops.filter(
     (shop) =>
-      (shop.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (shop.shop_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         shop.seller.toLowerCase().includes(searchTerm.toLowerCase()) ||
         shop.location.toLowerCase().includes(searchTerm.toLowerCase())) &&
       (selectedCategory ? shop.category === selectedCategory : true)
   );
+
+  const fetchAllShops = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/shops`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+  
+        const data = await response.json();
+        if (response.ok) {
+          setShops(data);
+        } else {
+          toast.error(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        toast.error(`Exception: ${error}`);
+      }
+    }
 
   return (
     <div className="shop-page">
@@ -155,13 +90,13 @@ const ShopPage = () => {
         <div className="shop-list">
           {filteredShops.length > 0 ? (
             filteredShops.map((shop, index) => (
-              <div className="shop-card" key={index}>
-                <img src={shop.image} alt={shop.name} className="shop-image" />
-                <div className="shop-details" onClick={()=> navigate("/products")}>
-                  <h3>{shop.name}</h3>
-                  <p>Seller: {shop.seller}</p>
+              <div className="shop-card" key={index} onClick={()=> navigate(`/products/${shop.shop_id}`)}>
+                <img src={shop.shop_logo} alt={shop.name} className="shop-image" />
+                <div className="shop-details">
+                  <h3>{shop.shop_name}</h3>
+                  {/* <p>Seller: {shop.seller}</p> */}
                   <p>Location: {shop.location}</p>
-                  <span className="discount">{shop.discount}</span>
+                  <p>Offer: <span className="discount">{shop.offer}</span></p>
                 </div>
               </div>
             ))

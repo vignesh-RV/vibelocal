@@ -1,6 +1,6 @@
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { toast } from 'react-toastify';
 import "./signup.css"
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +13,33 @@ export default function SignIn() {
   } = useForm();
 
   const onSubmit = (data) => {
-    localStorage.setItem("authToken", "TEST");
     console.log("Form Data:", data);
-    window.location.href = "./shops";
+    signinUser(data);
   };
+
+  const signinUser = async (userData) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("user_data",JSON.stringify(data));
+        window.location.href = "./shops";
+      } else {
+        localStorage.clear();
+        toast.error("Invalid credentials..");
+      }
+    } catch (error) {
+      localStorage.clear();
+      toast.error("Invalid credentials..");
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -28,8 +51,8 @@ export default function SignIn() {
       
       <div  className="form-control">
         <label>Mobile Number</label>
-        <input {...register("mobileNumber", { required: "Mobile number is required" })} />
-        {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber.message}</p>}
+        <input {...register("mobile_number", { required: "Mobile number is required" })} />
+        {errors.mobile_number && <p className="text-red-500">{errors.mobile_number.message}</p>}
       </div>
       
       <div className="form-control">
